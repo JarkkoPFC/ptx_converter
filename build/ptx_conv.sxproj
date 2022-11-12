@@ -1,0 +1,28 @@
+<Project ProjectName="@(SXProjName)"
+         OutputFile="@(ProjectName)_@(PlatformName)_@(BuildName)"
+         OutputFileExt="@(ExeExt)"
+         OutputDirectory="../../bin"
+         IntermediateDirectory="../../_intermediate/@(PlatformName)_@(CompilerName)/@(BuildName)/@(ProjectName)"
+         IncludeDirectories="../..;../../mini_sxp"
+         VSProjectGUID="CFA9A5B5-0043-4fc6-B192-2324D17F9D24"
+         LibraryDirectories="../../mini_sxp/sxp_extlibs/lib/@(PlatformName)_@(CompilerName)"
+         LinkLibraries="../../mini_sxp/lib/@(PlatformName)_@(CompilerName)/mini_sxp_@(BuildName)@(LibExt) @(LinkLibraries)"
+         VSSubSystem="@(VSSubSystem_Console)" >
+
+  <Builds>
+    <Build BuildName="debug" />
+    <Build BuildName="release" />
+    <Build BuildName="retail" />
+  </Builds>
+
+  <Platforms>
+    <Platform PlatformName="win32" />
+    <Platform PlatformName="win64" />
+  </Platforms>
+
+  <Configurations TemplateFile="@(PlatformName)/@(ProjectConfigName)_@(BuildName)_exe" />
+
+  <FileConfigs RootDir="../src" ProjFiles="*.cpp *.h *.inl *.inc" ProjCFiles="*.cpp" >
+    <FileConfig Files="@(ProjFiles)" Recursive="1" />
+  </FileConfigs>
+</Project>
